@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>socket.io</title>
+    <style>
+      * { margin: 100; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      canvas { padding: 20px; position: fixed;  }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  </head>
+
+  <body>
+
+  <form id="player-form" action="">
+    <input type="button" onclick="submitPlayer()" value="Start with me as Player 1">
+  </form>
+
+  <script>
+    var seed = Math.random();
+    function submitPlayer() {
+      var player = document.getElementById("player-form").elements[0].value;
+      socket.emit('setPlayer', seed);
+    }
+  </script>
+
+  <canvas id="gameCanvas" width="800" height="600" style="border:1px solid #c3c3c3;" >
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+
+  <script src="world.js"></script>
+
+  </body>
+</html>
