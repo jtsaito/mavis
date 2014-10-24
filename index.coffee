@@ -1,11 +1,13 @@
-world = { "p1": { x: 200, y: 200}, "p2": { x: 200, y: 400} }
+World  = require "./models/world"
+Player = require "./models/player"
+
+world = new World
 
 app  = require('express')()
 http = require('http').Server(app)
 io   = require('socket.io')(http)
 
-
-# Files
+# Resources
 app.get '/', (req, res) ->
   res.sendFile(__dirname + '/index.html')
 
@@ -22,26 +24,24 @@ app.get '/jquery-1.11.1.min.js', (req, res) ->
 # App and sockets
 io.on 'connection', (socket) ->
 
+  # Handle actions
   socket.on 'action', (action) ->
-    if(action)
-      update(action);
-      io.emit('world', world)
+    if action
+      update action
+      io.emit('world', JSON.stringify(world))
 
+  # Initialize new player
   socket.on 'setPlayer', (msg) ->
     io.emit('setPlayer', msg)
 
-
-
+# Run server
 http.listen 3000, ->
   console.log('listening on *:3000')
 
-
-# world
 update = (action) ->
-  actor = action.actor
-
   switch action.action
-    when 'up'    then world[actor].y = world[actor].y - 10
-    when 'down'  then world[actor].y = world[actor].y + 10
-    when 'left'  then world[actor].x = world[actor].x - 10
-    when 'right' then world[actor].x = world[actor].x + 10
+    when 'add_word' then add_word_to_player(action.id, action.word)
+    
+add_word_to_player = (id, word) ->
+  player = world.players.filter (player) -> player.id == id
+  player.add_word(word.direction, word.word)
