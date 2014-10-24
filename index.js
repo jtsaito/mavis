@@ -47,9 +47,11 @@ http.listen(5555, function() {
 });
 
 update = function(action) {
+  console.log(action.player_id);
+  console.log(action.word);
   switch (action.action) {
     case 'add_word':
-      return add_word_to_player(action.id, action.word);
+      return add_word_to_player(action.player_id, action.word);
   }
 };
 
@@ -59,8 +61,8 @@ add_player_to_world = function(id) {
 
 add_word_to_player = function(id, word) {
   var player;
-  player = world.players.filter(function(player) {
+  player = (world.players.filter(function(player) {
     return player.id === id;
-  });
+  }))[0];
   return player.add_word(word.direction, word.word);
 };

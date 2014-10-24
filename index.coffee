@@ -35,18 +35,19 @@ io.on 'connection', (socket) ->
     add_player_to_world id
     io.emit('world', JSON.stringify(world))
 
-
 # Run server
 http.listen 5555, ->
   console.log('listening on *:5555')
 
 update = (action) ->
+  console.log action.player_id
+  console.log action.word
   switch action.action
-    when 'add_word' then add_word_to_player(action.id, action.word)
+    when 'add_word' then add_word_to_player(action.player_id, action.word)
 
 add_player_to_world = (id) ->
   world.add_player(new Player(id))
     
 add_word_to_player = (id, word) ->
-  player = world.players.filter (player) -> player.id == id
+  player = (world.players.filter (player) -> player.id == id)[0]
   player.add_word(word.direction, word.word)

@@ -23,7 +23,7 @@
   <script>
     $("#word").keyup( function(event) {
       if(event.keyCode == 13) { 
-        sendWord(alert(this.value));
+        sendWord(this.value);
         this.value = "";
       }
     });

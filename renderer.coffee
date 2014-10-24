@@ -11,33 +11,21 @@ window.Renderer = class Renderer
 
   render_player: (player, color) ->
     @ctx.fillStyle = color
-    @ctx.fillRect(player.x, player.y, 30, 30)
+    
+    coordinates = 
+      x: player.x
+      y: player.y
 
-  # {"player":
-  #   [ 
-  #     { "id":1234,
-  #        "x":23,
-  #        "y":82,
-  #        "words": [
-  #             { 
-  #               "direction":"left",
-  #               "word":"Mouse"
-  #             }
-  #           ]
-  #     }
-  #   ]}
+    for word in player.words
+      coordinates = this.render_word(coordinates, word)
 
-#  alert(100)
-
-  #player = "player":
-       #"id":1234,
-       #"x":23,
-       #"y":82,
-       #"words": [ { "direction":"left", "word":"Mouse" } ]
-
-  #console.log(player)
-
-
-#render_words = (player) ->
-  #words = (word for word in player.words when foo)
-  #console.log words
+  render_word: (coordinates, word) ->
+    switch word.direction
+      when 'right'
+        for c in word.word
+          @ctx.fillRect(coordinates.x * 15, coordinates.y * 15, 15, 15)
+          coordinates.x = coordinates.x + 1
+        return coordinates
+      when 'left'  then
+      when 'up'    then
+      when 'down'  then
