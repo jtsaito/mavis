@@ -8,32 +8,33 @@ window.Renderer = class Renderer
     @ctx.fillRect(0, 0, 800, 600)
     
     for player in world.players
-      this.render_player(player, "#00ff00")
+      this.render_player(player)
 
-  render_player: (player, color) ->
-    @ctx.fillStyle = color
+  render_player: (player) ->
+    @ctx.fillStyle = player.color
     
     coordinates = 
       x: player.x
       y: player.y
 
-    for word in player.words
+    for word, index in player.words
       coordinates = this.render_word(coordinates, word)
 
   render_word: (coordinates, word) ->
     direction = word.direction
 
-    for char in word.word
+    for char, index in word.word
       this.render_character(char, coordinates.x, coordinates.y)
-      switch direction
-        when 'right'
-          coordinates.x = coordinates.x + 1
-        when 'left'
-          coordinates.x = coordinates.x - 1
-        when 'up'
-          coordinates.y = coordinates.y - 1
-        when 'down'
-          coordinates.y = coordinates.y + 1
+      if index != word.word.length - 1
+        switch direction
+          when 'right'
+            coordinates.x = coordinates.x + 1
+          when 'left'
+            coordinates.x = coordinates.x - 1
+          when 'up'
+            coordinates.y = coordinates.y - 1
+          when 'down'
+            coordinates.y = coordinates.y + 1
 
     return coordinates
 
