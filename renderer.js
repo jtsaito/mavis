@@ -38,22 +38,27 @@
     };
 
     Renderer.prototype.render_word = function(coordinates, word) {
-      var char, _i, _len, _ref;
-      switch (word.direction) {
-        case 'right':
-          _ref = word.word;
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            char = _ref[_i];
-            this.render_character(char, coordinates.x, coordinates.y);
+      var char, direction, _i, _len, _ref;
+      direction = word.direction;
+      _ref = word.word;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        char = _ref[_i];
+        this.render_character(char, coordinates.x, coordinates.y);
+        switch (direction) {
+          case 'right':
             coordinates.x = coordinates.x + 1;
-          }
-          return coordinates;
-        case 'left':
-          break;
-        case 'up':
-          break;
-        case 'down':
+            break;
+          case 'left':
+            coordinates.x = coordinates.x - 1;
+            break;
+          case 'up':
+            coordinates.y = coordinates.y - 1;
+            break;
+          case 'down':
+            coordinates.y = coordinates.y + 1;
+        }
       }
+      return coordinates;
     };
 
     Renderer.prototype.render_character = function(char, x, y) {

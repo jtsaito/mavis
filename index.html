@@ -14,11 +14,22 @@
 
   <body>
 
-  <form id="player-form" >
-    <input type="button" onclick="submitPlayer()" value="Start with me as Player 1">
-  </form>
+  <div>
+    <span>
+      <input type="button" id="join-game-btn" onclick="submitPlayer();" value="Join the game">
+    </span>
 
-  <br> <input type="text" name="LastName" value="Mouse" id="word">
+    <br> 
+
+    <span>
+      <input type="button" id="dir-left" onclick="setDir('left');" value="←">
+      <input type="button" id="dir-left" onclick="setDir('up');" value="↑">
+      <input type="button" id="dir-left" onclick="setDir('right');" value="→">
+      <input type="button" id="dir-left" onclick="setDir('down');" value="↓">
+      <input type="text" id="word" placeholder="Type word" autocomplete="off">
+      <span id="direction-text"></span>
+    </span>
+  </div>
 
   <script>
     $("#word").keyup( function(event) {
@@ -33,8 +44,18 @@
 
   <script>
     var player_id = Math.random();
+    var direction = "right";
+
+    setDir(direction);
+    
     function submitPlayer() {
       socket.emit('setPlayer', player_id);
+      $("#join-game-btn").prop('disabled', true);
+    }
+
+    function setDir(dir) {
+      direction = dir;
+      $("#direction-text").text(direction.toUpperCase());
     }
   </script>
 

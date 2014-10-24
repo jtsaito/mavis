@@ -43,8 +43,6 @@ http.listen 5555, ->
   console.log('listening on *:5555')
 
 update = (action) ->
-  console.log action.player_id
-  console.log action.word
   switch action.action
     when 'add_word' then add_word_to_player(action.player_id, action.word)
 

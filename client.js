@@ -13,7 +13,6 @@
   window.socket = socket;
 
   socket.on('world', function(world) {
-    console.log(world);
     return renderer.render(JSON.parse(world));
   });
 
@@ -22,7 +21,7 @@
       action: 'add_word',
       player_id: player_id,
       word: {
-        direction: 'right',
+        direction: direction,
         word: word
       }
     });
