@@ -35,6 +35,7 @@ io.on 'connection', (socket) ->
     add_player_to_world id
     io.emit('world', JSON.stringify(world))
 
+
 # Run server
 http.listen 5555, ->
   console.log('listening on *:5555')

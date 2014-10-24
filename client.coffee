@@ -8,3 +8,6 @@ window.socket = socket
 # Socket
 socket.on 'world', (world) ->
   renderer.render JSON.parse(world)
+
+window.sendWord = (word) ->
+  socket.emit 'action', { player: player_id, word: { direction: 'right', word: word } }

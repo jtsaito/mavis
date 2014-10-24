@@ -16,4 +16,14 @@
     return renderer.render(JSON.parse(world));
   });
 
+  window.sendWord = function(word) {
+    return socket.emit('action', {
+      player: player_id,
+      word: {
+        direction: 'right',
+        word: word
+      }
+    });
+  };
+
 }).call(this);
