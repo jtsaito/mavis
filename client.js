@@ -21,7 +21,7 @@ window.sendWord = function(word) {
     action: 'add_word',
     player_id: player_id,
     word: {
-      direction: 'right',
+      direction: direction,
       word: word
     }
   });
