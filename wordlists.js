@@ -1,4 +1,8 @@
-var words_eng = ['aa',
+var words_eng = [
+'sebastian',
+'jahn',
+'babbel',
+'aa',
 'aah',
 'aal',
 'aalii',
