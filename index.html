@@ -9,14 +9,26 @@
     </style>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/jquery-1.11.1.min.js"></script>
   </head>
 
   <body>
 
-  <form id="player-form" action="">
+  <form id="player-form" >
     <input type="button" onclick="submitPlayer()" value="Start with me as Player 1">
   </form>
+
+  <br> <input type="text" name="LastName" value="Mouse" id="word">
+
+
+  <script>
+    $("#word").keyup( function(event) {
+      if(event.keyCode == 13) { 
+        submitWord(this.value);
+      }
+      this.value = "";
+    });
+  </script>
 
   <script>
     var seed = Math.random();

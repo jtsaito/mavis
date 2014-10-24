@@ -12,6 +12,9 @@ app.get '/', (req, res) ->
 app.get '/world.js', (req, res) ->
   res.sendFile(__dirname + '/world.js')
 
+app.get '/jquery-1.11.1.min.js', (req, res) ->
+  res.sendFile(__dirname + '/jquery-1.11.1.min.js')
+
 
 # App and sockets
 io.on 'connection', (socket) ->
