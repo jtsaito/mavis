@@ -47,7 +47,7 @@ window.Renderer = class Renderer
           when 'down'
             coordinates.y = coordinates.y + 1
 
-      alert('someone won')  if coordinates.x == goal.x and coordinates.y == goal.y
+      alert('someone won')  if coordinates.x == goal.x and coordinates.y == (goal.y + 1)
 
     return coordinates
 
