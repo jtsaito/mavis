@@ -36,6 +36,7 @@ io.on 'connection', (socket) ->
   # Initialize new player
   socket.on 'setPlayer', (id) ->
     add_player_to_world id
+    console.log JSON.stringify(world)
     io.emit('world', JSON.stringify(world))
 
 # Run server
