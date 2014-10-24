@@ -7,7 +7,6 @@ window.socket = socket
 
 # Socket
 socket.on 'world', (world) ->
-  console.log world
   renderer.render JSON.parse(world)
 
 window.sendWord = (word) ->
