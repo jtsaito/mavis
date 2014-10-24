@@ -1,10 +1,13 @@
 var me = "";
 
-// Socket
+var c = document.getElementById("gameCanvas");
+var ctx = c.getContext("2d");
 var socket = io();
+var renderer = new Renderer(ctx);
 
+// Socket
 socket.on('world', function(world){
-  render(world);
+  renderer.render(world);
 });
 
 socket.on('setPlayer', function(remotePlayer){
@@ -17,8 +20,6 @@ socket.on('setPlayer', function(remotePlayer){
 });
 
 // Canvas
-var c = document.getElementById("gameCanvas");
-var ctx = c.getContext("2d");
 
 document.addEventListener('keydown', function(e) {
   var action;
@@ -34,17 +35,3 @@ document.addEventListener('keydown', function(e) {
     socket.emit('action', { actor: me, action: action } );
   }
 }, false);
-
-function render(world) {
-  ctx.fillStyle = "#000000";
-  ctx.fillRect(0, 0, 800, 600);
-  render_player(world.p1, "#00ff00");
-  render_player(world.p2, "#ff00ff");
-  ctx.fillStyle = "#000000";
-};
-
-function render_player(player, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(player.x, player.y, 50, 30);
-  ctx.fillStyle = "#000000";
-};
