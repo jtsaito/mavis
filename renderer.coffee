@@ -4,6 +4,7 @@ window.Renderer = class Renderer
   
   render: (world) ->
     @ctx.fillStyle = "#000000"
+    @ctx.font="15px Helvetica"
     @ctx.fillRect(0, 0, 800, 600)
     
     for player in world.players
@@ -22,10 +23,13 @@ window.Renderer = class Renderer
   render_word: (coordinates, word) ->
     switch word.direction
       when 'right'
-        for c in word.word
-          @ctx.fillRect(coordinates.x * 15, coordinates.y * 15, 15, 15)
+        for char in word.word
+          this.render_character(char, coordinates.x, coordinates.y)
           coordinates.x = coordinates.x + 1
         return coordinates
       when 'left'  then
       when 'up'    then
       when 'down'  then
+
+  render_character: (char, x, y) ->
+    @ctx.fillText(char.toUpperCase(), x * 15, y * 15, 15, 15)
