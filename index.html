@@ -19,7 +19,7 @@
       <input type="button" id="join-game-btn" onclick="submitPlayer();" value="Join the game">
     </span>
 
-    <br> 
+    <br>
 
     <span>
       <input type="button" id="dir-left" onclick="setDir('left');" value="←">
@@ -33,11 +33,26 @@
 
   <script>
     $("#word").keyup( function(event) {
-      if (event.keyCode == 13) { 
-        sendWord(this.value);
+      if(event.keyCode == 13) {
+        if( $.inArray(this.value, window.words_eng) >= 0 ) {
+          sendWord(this.value);
+        }
         this.value = "";
       }
     });
+  </script>
+
+  <script>
+    window.addEventListener("keydown", dealWithKeyboard, false);
+
+    function dealWithKeyboard(e) {
+      switch(e.keyCode) {
+        case 37: setDir('left'); break;
+        case 38: setDir('up'); break;
+        case 39: setDir('right'); break;
+        case 40: setDir('down'); break;
+      }
+    }
   </script>
 
   <script>
@@ -45,7 +60,7 @@
     var direction = "right";
 
     setDir(direction);
-    
+
     function submitPlayer() {
       socket.emit('setPlayer', player_id);
       $("#join-game-btn").prop('disabled', true);
@@ -63,6 +78,7 @@
 
   <script src="renderer.js"></script>
   <script src="client.js"></script>
+  <script src="wordlists.js"></script>
 
   </body>
 </html>

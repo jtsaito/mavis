@@ -40,3 +40,6 @@ window.Renderer = class Renderer
 
   render_character: (char, x, y) ->
     @ctx.fillText(char.toUpperCase(), x * 15, y * 15, 15, 15)
+
+  word_check: (word) ->
+    $.inArray(word, window.words_eng) >= 0

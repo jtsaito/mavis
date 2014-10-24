@@ -17,6 +17,9 @@ app.get '/client.js', (req, res) ->
 app.get '/renderer.js', (req, res) ->
   res.sendFile(__dirname + '/renderer.js')
 
+app.get '/wordlists.js', (req, res) ->
+  res.sendFile(__dirname + '/wordlists.js')
+
 app.get '/jquery-1.11.1.min.js', (req, res) ->
   res.sendFile(__dirname + '/jquery-1.11.1.min.js')
 
@@ -33,6 +36,7 @@ io.on 'connection', (socket) ->
   # Initialize new player
   socket.on 'setPlayer', (id) ->
     add_player_to_world id
+    console.log JSON.stringify(world)
     io.emit('world', JSON.stringify(world))
 
 # Run server
