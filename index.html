@@ -30,10 +30,9 @@
   </script>
 
   <script>
-    var seed = Math.random();
+    var player_id = Math.random();
     function submitPlayer() {
-      var player = document.getElementById("player-form").elements[0].value;
-      socket.emit('setPlayer', seed);
+      socket.emit('setPlayer', player_id);
     }
   </script>
 
@@ -42,7 +41,7 @@
   </canvas>
 
   <script src="renderer.js"></script>
-  <script src="world.js"></script>
+  <script src="client.js"></script>
 
   </body>
 </html>

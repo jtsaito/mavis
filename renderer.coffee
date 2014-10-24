@@ -1,17 +1,17 @@
 window.Renderer = class Renderer
   constructor: (canvas_context) ->
     @ctx = canvas_context
+  
   render: (world) ->
     @ctx.fillStyle = "#000000"
     @ctx.fillRect(0, 0, 800, 600)
-    this.render_player(world.p1, "#00ff00")
-    this.render_player(world.p2, "#ff00ff")
-    @ctx.fillStyle = "#000000"
+    
+    for player in world.players
+      this.render_player(player, "#00ff00")
 
   render_player: (player, color) ->
     @ctx.fillStyle = color
-    @ctx.fillRect(player.x, player.y, 50, 30)
-    @ctx.fillStyle = "#000000"
+    @ctx.fillRect(player.x, player.y, 30, 30)
 
   # {"player":
   #   [ 

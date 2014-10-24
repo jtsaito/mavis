@@ -11,8 +11,8 @@ io   = require('socket.io')(http)
 app.get '/', (req, res) ->
   res.sendFile(__dirname + '/index.html')
 
-app.get '/world.js', (req, res) ->
-  res.sendFile(__dirname + '/world.js')
+app.get '/client.js', (req, res) ->
+  res.sendFile(__dirname + '/client.js')
 
 app.get '/renderer.js', (req, res) ->
   res.sendFile(__dirname + '/renderer.js')
@@ -31,16 +31,20 @@ io.on 'connection', (socket) ->
       io.emit('world', JSON.stringify(world))
 
   # Initialize new player
-  socket.on 'setPlayer', (msg) ->
-    io.emit('setPlayer', msg)
+  socket.on 'setPlayer', (id) ->
+    add_player_to_world id
+    io.emit('world', JSON.stringify(world))
 
 # Run server
-http.listen 3000, ->
-  console.log('listening on *:3000')
+http.listen 5555, ->
+  console.log('listening on *:5555')
 
 update = (action) ->
   switch action.action
     when 'add_word' then add_word_to_player(action.id, action.word)
+
+add_player_to_world = (id) ->
+  world.add_player(new Player(id))
     
 add_word_to_player = (id, word) ->
   player = world.players.filter (player) -> player.id == id
