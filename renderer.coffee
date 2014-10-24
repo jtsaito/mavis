@@ -4,7 +4,7 @@ window.Renderer = class Renderer
   
   render: (world) ->
     @ctx.fillStyle = "#000000"
-    @ctx.font="15px Helvetica"
+    @ctx.font      = "15px Helvetica"
     @ctx.fillRect(0, 0, 800, 600)
     
     for player in world.players
