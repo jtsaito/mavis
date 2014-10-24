@@ -7,8 +7,15 @@ window.Renderer = class Renderer
     @ctx.font      = "15px Helvetica"
     @ctx.fillRect(0, 0, 800, 600)
     
+    this.render_goal(world.goal)
+
     for player in world.players
       this.render_player(player, "#00ff00")
+
+
+  render_goal: (goal) ->
+    @ctx.fillStyle = "#FFC0CB"
+    @ctx.fillRect(goal.x * 15, goal.y * 15, 15, 15)
 
   render_player: (player, color) ->
     @ctx.fillStyle = color
