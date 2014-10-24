@@ -23,6 +23,9 @@ app.get '/wordlists.js', (req, res) ->
 app.get '/jquery-1.11.1.min.js', (req, res) ->
   res.sendFile(__dirname + '/jquery-1.11.1.min.js')
 
+app.get '/babbel.png', (req, res) ->
+  res.sendFile(__dirname + '/babbel.png')
+
 app.get '/howler.min.js', (req, res) ->
   res.sendFile(__dirname + '/howler.min.js')
 

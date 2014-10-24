@@ -10,13 +10,18 @@ window.Renderer = class Renderer
     this.render_goal(world.goal)
 
     for player in world.players
-      this.render_player(player)
+      this.render_player(player, world.goal)
+
 
   render_goal: (goal) ->
-    @ctx.fillStyle = "#FFC0CB"
+    @ctx.fillStyle = "#00FF00"
     @ctx.fillRect(goal.x * 15, goal.y * 15, 15, 15)
 
-  render_player: (player) ->
+    img=document.getElementById("babbel")
+    @ctx.drawImage(img, goal.x * 15, goal.y * 15, 15, 15)
+
+
+  render_player: (player, goal) ->
     @ctx.fillStyle = player.color
     
     coordinates = 
@@ -24,9 +29,9 @@ window.Renderer = class Renderer
       y: player.y
 
     for word, index in player.words
-      coordinates = this.render_word(coordinates, word)
+      coordinates = this.render_word(coordinates, word, goal)
 
-  render_word: (coordinates, word) ->
+  render_word: (coordinates, word, goal) ->
     direction = word.direction
 
     for char, index in word.word
@@ -41,6 +46,8 @@ window.Renderer = class Renderer
             coordinates.y = coordinates.y - 1
           when 'down'
             coordinates.y = coordinates.y + 1
+
+      alert('someone won')  if coordinates.x == goal.x and coordinates.y == (goal.y + 1)
 
     return coordinates
 
