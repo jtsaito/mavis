@@ -19,7 +19,7 @@
       <input type="button" id="join-game-btn" onclick="submitPlayer();" value="Join the game">
     </span>
 
-    <br> 
+    <br>
 
     <span>
       <input type="button" id="dir-left" onclick="setDir('left');" value="←">
@@ -43,11 +43,24 @@
   </script>
 
   <script>
+    window.addEventListener("keydown", dealWithKeyboard, false);
+
+    function dealWithKeyboard(e) {
+      switch(e.keyCode) {
+        case 37: setDir('left'); break;
+        case 38: setDir('up'); break;
+        case 39: setDir('right'); break;
+        case 40: setDir('down'); break;
+      }
+    }
+  </script>
+
+  <script>
     var player_id = Math.random();
     var direction = "right";
 
     setDir(direction);
-    
+
     function submitPlayer() {
       socket.emit('setPlayer', player_id);
       $("#join-game-btn").prop('disabled', true);
