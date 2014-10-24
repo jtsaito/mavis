@@ -17,7 +17,7 @@ window.Renderer = class Renderer
     @ctx.fillStyle = "#00FF00"
     @ctx.fillRect(goal.x * 15, goal.y * 15, 15, 15)
 
-    img=document.getElementById("babbel")
+    img = document.getElementById("babbel")
     @ctx.drawImage(img, goal.x * 15, goal.y * 15, 15, 15)
 
 
@@ -47,7 +47,7 @@ window.Renderer = class Renderer
           when 'down'
             coordinates.y = coordinates.y + 1
 
-      alert('someone won')  if coordinates.x == goal.x and coordinates.y == (goal.y + 1)
+      this.player_won() if coordinates.x == goal.x and coordinates.y == (goal.y + 1)
 
     return coordinates
 
@@ -56,3 +56,6 @@ window.Renderer = class Renderer
 
   word_check: (word) ->
     $.inArray(word, window.words_eng) >= 0
+
+  player_won: ->
+    sound = new Howl({ urls: ['win.mp3'], volume: 1.5 }).play()

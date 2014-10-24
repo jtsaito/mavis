@@ -35,6 +35,9 @@ app.get '/fail.mp3', (req, res) ->
 app.get '/enter.mp3', (req, res) ->
   res.sendFile(__dirname + '/sounds/enter.mp3')
 
+app.get '/win.mp3', (req, res) ->
+  res.sendFile(__dirname + '/sounds/win.mp3')
+
 # App and sockets
 io.on 'connection', (socket) ->
 
