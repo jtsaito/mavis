@@ -23,6 +23,10 @@ app.get '/wordlists.js', (req, res) ->
 app.get '/jquery-1.11.1.min.js', (req, res) ->
   res.sendFile(__dirname + '/jquery-1.11.1.min.js')
 
+app.get '/babbel.png', (req, res) ->
+  res.sendFile(__dirname + '/babbel.png')
+
+
 
 # App and sockets
 io.on 'connection', (socket) ->
