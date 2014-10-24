@@ -20,13 +20,12 @@
 
   <br> <input type="text" name="LastName" value="Mouse" id="word">
 
-
   <script>
     $("#word").keyup( function(event) {
       if(event.keyCode == 13) { 
-        submitWord(this.value);
+        alert(this.value);
+        this.value = "";
       }
-      this.value = "";
     });
   </script>
 
@@ -43,6 +42,7 @@
   </canvas>
 
   <script src="world.js"></script>
+  <script src="render.js"></script>
 
   </body>
 </html>
