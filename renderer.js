@@ -60,6 +60,10 @@
       return this.ctx.fillText(char.toUpperCase(), x * 15, y * 15, 15, 15);
     };
 
+    Renderer.prototype.word_check = function(word) {
+      return $.inArray(word, window.words_eng) >= 0;
+    };
+
     return Renderer;
 
   })();

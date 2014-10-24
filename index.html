@@ -22,8 +22,10 @@
 
   <script>
     $("#word").keyup( function(event) {
-      if(event.keyCode == 13) { 
-        sendWord(this.value);
+      if(event.keyCode == 13) {
+        if( $.inArray(this.value, window.words_eng) >= 0 ) {
+          sendWord(this.value);
+        }
         this.value = "";
       }
     });
@@ -42,6 +44,7 @@
 
   <script src="renderer.js"></script>
   <script src="client.js"></script>
+  <script src="wordlists.js"></script>
 
   </body>
 </html>
