@@ -27,6 +27,7 @@
       <input type="button" id="dir-left" onclick="setDir('right');" value="→">
       <input type="button" id="dir-left" onclick="setDir('down');" value="↓">
       <input type="text" id="word" placeholder="Type word" autocomplete="off">
+      <span id="direction-text"></span>
     </span>
   </div>
 
@@ -41,7 +42,9 @@
 
   <script>
     var player_id = Math.random();
-    var direction;
+    var direction = "right";
+
+    setDir(direction);
     
     function submitPlayer() {
       socket.emit('setPlayer', player_id);
@@ -50,6 +53,7 @@
 
     function setDir(dir) {
       direction = dir;
+      $("#direction-text").text(direction.toUpperCase());
     }
   </script>
 
