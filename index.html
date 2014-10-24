@@ -10,6 +10,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/jquery-1.11.1.min.js"></script>
+    <script src="/howler.min.js"></script>
   </head>
 
   <body>
@@ -33,9 +34,12 @@
 
   <script>
     $("#word").keyup( function(event) {
-      if(event.keyCode == 13) {
-        if( $.inArray(this.value, window.words_eng) >= 0 ) {
+      if (event.keyCode == 13) {
+        if ( $.inArray(this.value, window.words_eng) >= 0 ) {
+          playSound(['enter.mp3']);
           sendWord(this.value);
+        } else {
+          playSound(['fail.mp3']);
         }
         this.value = "";
       }
@@ -47,10 +51,10 @@
 
     function dealWithKeyboard(e) {
       switch(e.keyCode) {
-        case 37: setDir('left'); break;
-        case 38: setDir('up'); break;
+        case 37: setDir('left');  break;
+        case 38: setDir('up');    break;
         case 39: setDir('right'); break;
-        case 40: setDir('down'); break;
+        case 40: setDir('down');  break;
       }
     }
   </script>
@@ -69,6 +73,12 @@
     function setDir(dir) {
       direction = dir;
       $("#direction-text").text(direction.toUpperCase());
+    }
+
+    function playSound(sound) {
+      var sound = new Howl({
+        urls: sound
+      }).play();
     }
   </script>
 

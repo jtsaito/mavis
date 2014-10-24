@@ -23,6 +23,14 @@ app.get '/wordlists.js', (req, res) ->
 app.get '/jquery-1.11.1.min.js', (req, res) ->
   res.sendFile(__dirname + '/jquery-1.11.1.min.js')
 
+app.get '/howler.min.js', (req, res) ->
+  res.sendFile(__dirname + '/howler.min.js')
+
+app.get '/fail.mp3', (req, res) ->
+  res.sendFile(__dirname + '/sounds/fail.mp3')
+
+app.get '/enter.mp3', (req, res) ->
+  res.sendFile(__dirname + '/sounds/enter.mp3')
 
 # App and sockets
 io.on 'connection', (socket) ->
