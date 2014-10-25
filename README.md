@@ -15,7 +15,7 @@ The browserify "lets you require('modules') in the browser by bundling up all of
 
 ###Local node.js packages###
 ```bash
-npm install coffee-script express socket.io
+npm install express socket.io
 ```
 
 Compiling Mavis
