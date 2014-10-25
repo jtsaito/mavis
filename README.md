@@ -23,14 +23,12 @@ Compiling Mavis
 ###Compile client sources###
 ```bash
 coffee --output public/javascript/client --compile src/*.coffee
-
 ```
 (Add `--watch` for auto compilation.)
 
 ###Compile server sources###
 ```bash
 coffee --compile module/*.coffee
-
 ```
 
 Playing Mavis
@@ -38,13 +36,7 @@ Playing Mavis
 ###Run server from CoffeeScript in development mode###
 ```
 coffee index.coffee
-
 ```
-
-Start the server in your network. Connect from servers on port
-
-  http://your.ip.is.here:5555/
-
-Click "Join the game".
+Start the server in your network. Connect from servers on port 5555: `http://your.ip.is.here:5555/`. Click "Join the game".
 
 Currently, the server needs restarting after every game.
