@@ -4,7 +4,7 @@ This is a multiplayer typing game by Timothy Daniell, Sebastian Oelke and Jahn S
 
 Required modules
 ----------------
-We require some global packages as tools to be installed as well as some packages for the source locally.
+We require some global packages as tools and some local dependencies.
 
 ###Global Coffee Script compilation, etc.###
 ```bash
@@ -47,4 +47,4 @@ Start the server in your network. Connect from servers on port
 
 Click "Join the game".
 
-The server needs restarting after every game.
+Currently, the server needs restarting after every game.
