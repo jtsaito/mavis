@@ -10,7 +10,7 @@ io       = require('socket.io')(http)
 
 
 # Resources
-app.use('/js',    express.static(__dirname + '/public/javascript'))
+app.use('/js',     express.static(__dirname + '/public/javascript'))
 app.use('/sounds', express.static(__dirname + '/public/sounds'))
 app.use('/images', express.static(__dirname + '/public/images'))
 app.use(express.static(__dirname + '/public'))
