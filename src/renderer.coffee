@@ -58,4 +58,4 @@ window.Renderer = class Renderer
     $.inArray(word, window.words_eng) >= 0
 
   player_won: ->
-    sound = new Howl({ urls: ['win.mp3'], volume: 1.5 }).play()
+    sound = new Howl({ urls: ['sounds/win.mp3'], volume: 1.5 }).play()

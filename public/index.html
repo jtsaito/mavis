@@ -9,13 +9,13 @@
     </style>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/jquery-1.11.1.min.js"></script>
-    <script src="/howler.min.js"></script>
+    <script src="/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="/js/vendor/howler.min.js"></script>
   </head>
 
   <body>
 
-  <img hidden id="babbel" src="babbel.png" alt="The Scream" width="15" height="15" >
+  <img hidden id="babbel" src="images/babbel.png" alt="The Scream" width="15" height="15" >
   
   <div>
     <span>
@@ -38,10 +38,10 @@
     $("#word").keyup( function(event) {
       if (event.keyCode == 13) {
         if ( $.inArray(this.value, window.words_eng) >= 0 ) {
-          playSound(['enter.mp3']);
+          playSound(['sounds/enter.mp3']);
           sendWord(this.value);
         } else {
-          playSound(['fail.mp3']);
+          playSound(['sounds/fail.mp3']);
         }
         this.value = "";
       }
@@ -88,9 +88,9 @@
     Your browser does not support the HTML5 canvas tag.
   </canvas>
 
-  <script src="renderer.js"></script>
-  <script src="client.js"></script>
-  <script src="wordlists.js"></script>
+  <script src="js/client/renderer.js"></script>
+  <script src="js/client/client.js"></script>
+  <script src="js/vendor/wordlists.js"></script>
 
   </body>
 </html>

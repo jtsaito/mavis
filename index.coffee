@@ -3,40 +3,26 @@ Player = require "./models/player"
 
 world = new World
 
-app  = require('express')()
-http = require('http').Server(app)
-io   = require('socket.io')(http)
+express  = require('express')
+app      = express()
+http     = require('http').Server(app)
+io       = require('socket.io')(http)
+
 
 # Resources
+app.use('/js',    express.static(__dirname + '/public/javascript'))
+app.use('/sounds', express.static(__dirname + '/public/sounds'))
+app.use('/images', express.static(__dirname + '/public/images'))
+app.use(express.static(__dirname + '/public'))
+
 app.get '/', (req, res) ->
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(__dirname + '/public/index.html')
 
-app.get '/client.js', (req, res) ->
-  res.sendFile(__dirname + '/client.js')
 
-app.get '/renderer.js', (req, res) ->
-  res.sendFile(__dirname + '/renderer.js')
+# Run server
+http.listen 5555, ->
+  console.log('listening on *:5555')
 
-app.get '/wordlists.js', (req, res) ->
-  res.sendFile(__dirname + '/wordlists.js')
-
-app.get '/jquery-1.11.1.min.js', (req, res) ->
-  res.sendFile(__dirname + '/jquery-1.11.1.min.js')
-
-app.get '/babbel.png', (req, res) ->
-  res.sendFile(__dirname + '/babbel.png')
-
-app.get '/howler.min.js', (req, res) ->
-  res.sendFile(__dirname + '/howler.min.js')
-
-app.get '/fail.mp3', (req, res) ->
-  res.sendFile(__dirname + '/sounds/fail.mp3')
-
-app.get '/enter.mp3', (req, res) ->
-  res.sendFile(__dirname + '/sounds/enter.mp3')
-
-app.get '/win.mp3', (req, res) ->
-  res.sendFile(__dirname + '/sounds/win.mp3')
 
 # App and sockets
 io.on 'connection', (socket) ->
@@ -53,13 +39,10 @@ io.on 'connection', (socket) ->
     console.log JSON.stringify(world)
     io.emit('world', JSON.stringify(world))
 
-# Run server
-http.listen 5555, ->
-  console.log('listening on *:5555')
 
+# World state
 update = (action) ->
-  switch action.action
-    when 'add_word' then add_word_to_player(action.player_id, action.word)
+  add_word_to_player(action.player_id, action.word) if action.action == 'add_word'
 
 add_player_to_world = (id) ->
   world.add_player(new Player(id))

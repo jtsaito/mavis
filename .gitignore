@@ -32,3 +32,4 @@ client.js
 index.js
 renderer.js
 models/*.js
+public/javascript/client/*.js
