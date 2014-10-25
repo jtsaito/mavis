@@ -1,7 +1,6 @@
 Mavis
 =====
-This is a game by Tim Daniell, Seb Oelke and Jahn Saito for on the 2nd Babbel Hackday in 2014.  
-
+This is a multiplayer typing game by Timothy Daniell, Sebastian Oelke and Jahn Saito developed at the _2nd Babbel Hackday_ in 2014.  
 
 Required modules
 ----------------
@@ -19,8 +18,8 @@ The browserify "lets you require('modules') in the browser by bundling up all of
 npm install coffee-script express socket.io
 ```
 
-Compilation Mavis
------------------
+Compiling Mavis
+---------------
 
 ###Compile client sources###
 ```bash
