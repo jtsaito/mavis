@@ -20,7 +20,6 @@ npm install coffee-script express socket.io
 
 Compiling Mavis
 ---------------
-
 ###Compile client sources###
 ```bash
 coffee --output public/javascript/client --compile src/*.coffee
@@ -28,8 +27,7 @@ coffee --output public/javascript/client --compile src/*.coffee
 ```
 (Add `--watch` for auto compilation.)
 
-
-###Compile client sources###
+###Compile server sources###
 ```bash
 coffee --compile module/*.coffee
 
@@ -37,7 +35,6 @@ coffee --compile module/*.coffee
 
 Playing Mavis
 -------------
-
 ###Run server from CoffeeScript in development mode###
 ```
 coffee index.coffee
