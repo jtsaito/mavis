@@ -37,6 +37,6 @@ Playing Mavis
 ```
 coffee index.coffee
 ```
-Start the server in your network. Connect from servers on port 5555: `http://your.ip.is.here:5555/`. Click "Join the game".
+Connect from servers on port 5555: `http://your.ip.is.here:5555/`. Click "Join the game".
 
 Currently, the server needs restarting after every game.
